@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Parcel
@@ -14,15 +15,25 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public Date timeStamp;
+    public String postId;
+//    public JSONObject entities;
 
     // Empty constructor for parcelable lib
     public Tweet(){}
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
-        tweet.body = jsonObject.getString("text");
+        if(jsonObject.has("full_text")) {
+            tweet.body = jsonObject.getString("full_text");
+//            tweet.entities = jsonObject.getJSONObject("entities");
+        } else {
+            tweet.body = jsonObject.getString("text");
+        }
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+//        tweet.timeStamp = tweet.getRel
+        tweet.postId = jsonObject.getString("id_str");
         return tweet;
     }
 
