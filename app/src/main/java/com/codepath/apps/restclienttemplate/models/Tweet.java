@@ -21,7 +21,7 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
-    public Date timeStamp;
+    public String timeStamp;
     public String postId;
     public String media;
     public String relativeTimeAgo;

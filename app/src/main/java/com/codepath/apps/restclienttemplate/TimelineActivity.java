@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -46,7 +48,6 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline_activity);
 
         client = TwitterApp.getRestClient(this);
-
         // Find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
         // Init the list
@@ -79,12 +80,16 @@ public class TimelineActivity extends AppCompatActivity {
         // Send the network request to fetch the updated data
         // `client` here is an instance of Android Async HTTP
         // getHomeTimeline is an example endpoint.
+        // on some click or some loading we need to wait for...
+        ProgressBar pb = (ProgressBar) findViewById(R.id.pbLoading);
+        pb.setVisibility(ProgressBar.VISIBLE);
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 // Remember to CLEAR OUT old items before appending in the new ones
                 adapter.clear();
                 // ...the data has come back, add new items to your adapter...
+                // run a background job and once complete
                 try {
                     adapter.addAll(Tweet.fromJsonArray(json.jsonArray));
                 } catch (JSONException e) {
@@ -100,6 +105,7 @@ public class TimelineActivity extends AppCompatActivity {
 
             }
         });
+        pb.setVisibility(ProgressBar.GONE);
     }
 
     // Inflate the menu; this adds items to the action bar if it is present.

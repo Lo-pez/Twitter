@@ -50,7 +50,7 @@
         android:id="@+id/previewImage"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,61 +63,145 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:clickable="true"
+        android:contentDescription="@string/comment_button"
+        android:focusable="true"
         android:outlineProvider="none"
         app:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnRetweet"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@android:drawable/sym_action_chat"
-        android:focusable="true"
-        android:contentDescription="@string/comment_button" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRetweetCount"
+        app:srcCompat="@android:drawable/sym_action_chat" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRetweet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:clickable="true"
+        android:contentDescription="@string/retweet_button"
+        android:focusable="true"
         android:outlineProvider="none"
         app:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnLike"
         app:layout_constraintStart_toEndOf="@+id/btnComment"
-        app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@android:drawable/arrow_up_float"
-        android:focusable="true"
-        android:contentDescription="@string/retweet_button" />
+        app:srcCompat="@android:drawable/arrow_up_float" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:clickable="true"
+        android:contentDescription="@string/like_button"
+        android:focusable="true"
         android:outlineProvider="none"
         app:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnShare"
         app:layout_constraintStart_toEndOf="@+id/btnRetweet"
-        app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@android:drawable/gallery_thumb"
-        android:focusable="true"
-        android:contentDescription="@string/like_button" />
+        app:srcCompat="@android:drawable/gallery_thumb" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:clickable="true"
+        android:contentDescription="@string/share_button"
+        android:focusable="true"
         android:outlineProvider="none"
         app:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnLike"
+        app:srcCompat="@android:drawable/ic_menu_share" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/tvHour"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@android:drawable/ic_menu_share"
-        android:focusable="true"
-        android:contentDescription="@string/share_button" />
+        tools:text="6/6/2022" />
+
+    <TextView
+        android:id="@+id/tvHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="8:12 AM"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/previewImage" />
+
+    <TextView
+        android:id="@+id/tvRetweetCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:text="604"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHour" />
+
+    <TextView
+        android:id="@+id/tvRetweets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Retweets"
+        app:layout_constraintStart_toEndOf="@+id/tvRetweetCount"
+        app:layout_constraintTop_toBottomOf="@+id/tvHour" />
+
+    <TextView
+        android:id="@+id/tvQuoteTweets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="Quote Tweets"
+        app:layout_constraintStart_toEndOf="@+id/tvQuoteTweetCount"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
+    <TextView
+        android:id="@+id/tvQuoteTweetCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="53"
+        app:layout_constraintStart_toEndOf="@+id/tvRetweets"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
+    <TextView
+        android:id="@+id/tvLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Likes"
+        app:layout_constraintStart_toEndOf="@+id/tvLikesCount"
+        app:layout_constraintTop_toBottomOf="@+id/tvTwitterAndroid" />
+
+    <TextView
+        android:id="@+id/tvLikesCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="9,584"
+        app:layout_constraintStart_toEndOf="@+id/tvQuoteTweets"
+        app:layout_constraintTop_toBottomOf="@+id/tvTwitterAndroid" />
+
+    <TextView
+        android:id="@+id/tvTwitterAndroid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Twitter for Android"
+        app:layout_constraintStart_toEndOf="@+id/tvDate"
+        app:layout_constraintTop_toBottomOf="@+id/previewImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

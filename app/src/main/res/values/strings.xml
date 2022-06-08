@@ -10,5 +10,9 @@
     <string name="log_out">Log out</string>
     <string name="user_image">User image</string>
     <string name="compose">Compose</string>
+    <string name="share_button">Share button</string>
+    <string name="like_button">Like button</string>
+    <string name="retweet_button">Retweet button</string>
+    <string name="comment_button">Comment button</string>
 
 </resources>
