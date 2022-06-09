@@ -8,11 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,13 +77,58 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         // Get data at position
         Tweet tweet = tweets.get(position);
 
-        holder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
+        holder.btnComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.clCompose.getVisibility() == View.VISIBLE) {
+                    holder.clCompose.setVisibility(View.GONE);
+                }
+                else { holder.clCompose.setVisibility(View.VISIBLE); }
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailedTweetActivity.class);
                 intent.putExtra("tweet", Parcels.wrap(tweets.get(holder.getAdapterPosition())));
                 context.startActivity(intent);
                 Log.i("TAG", "Tweet has been clicked");
+            }
+        });
+
+        holder.btnTweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String tweetContent = holder.etCompose.getText().toString();
+                if (tweetContent.isEmpty()) {
+                    Toast.makeText(context, "Sorry, your tweet cannot be empty.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (tweetContent.length() > ComposeActivity.MAX_TWEET_LENGTH) {
+                    Toast.makeText(context, "Sorry, your tweet is too long.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                // Make an API call to Twitter to publish the tweet
+                client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Headers headers, JSON json) {
+                        Log.i(TAG, "onSuccess published tweet");
+                        try {
+                            Tweet tweet = Tweet.fromJson(json.jsonObject);
+                            Log.i(TAG, "Published tweet says:" + tweet.body);
+                            holder.clCompose.setVisibility(View.GONE);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                        Log.e(TAG, "onFailure to publish tweet", throwable);
+                    }
+                });
+                // TODO set up character counting
             }
         });
         // Bind the tweet with the viewholder
@@ -97,6 +145,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         ImageView ivProfileImage;
         TextView tvBody;
+        Button btnTweet;
+        ConstraintLayout clCompose;
         TextView tvScreenName;
         TextView tvTimeStamp;
         TextView etCompose;
@@ -113,8 +163,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
             btnComment = itemView.findViewById(R.id.btnComment);
             etCompose = itemView.findViewById(R.id.etCompose);
-
-            btnComment.setOnClickListener(this);
+            clCompose = itemView.findViewById(R.id.clCompose);
+            btnTweet = itemView.findViewById(R.id.btnTweet);
         }
 
         public void bind(Tweet tweet) {
@@ -130,34 +180,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         @Override
         public void onClick(View view) {
-            String tweetContent = etCompose.getText().toString();
-            if (tweetContent.isEmpty()) {
-                Toast.makeText(context, "Sorry, your tweet cannot be empty.",Toast.LENGTH_LONG).show();
-                return;
-            }
-            if (tweetContent.length() > ComposeActivity.MAX_TWEET_LENGTH) {
-                Toast.makeText(context, "Sorry, your tweet is too long.",Toast.LENGTH_LONG).show();
-                return;
-            }
-            // Make an API call to Twitter to publish the tweet
-            client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Headers headers, JSON json) {
-                    Log.i(TAG, "onSuccess published tweet");
-                    try {
-                        Tweet tweet = Tweet.fromJson(json.jsonObject);
-                        Log.i(TAG, "Published tweet says:" + tweet.body);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
 
-                @Override
-                public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                    Log.e(TAG, "onFailure to publish tweet", throwable);
-                }
-            });
-            // TODO set up character counting
         }
     }
 }
