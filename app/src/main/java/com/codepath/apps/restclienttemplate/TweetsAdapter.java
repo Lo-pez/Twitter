@@ -172,7 +172,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName.setText(tweet.user.screenName);
             tvTimeStamp.setText(tweet.relativeTimeAgo);
             etCompose.setText("@" + tweet.user.screenName);
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Glide.with(context).load(tweet.user.profileImageUrl).circleCrop().into(ivProfileImage);
             if (tweet.media != "none")
                 previewImage.setVisibility(View.VISIBLE);
                 Glide.with(context).load(tweet.media).into(previewImage);

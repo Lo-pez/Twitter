@@ -14,5 +14,6 @@
     <string name="like_button">Like button</string>
     <string name="retweet_button">Retweet button</string>
     <string name="comment_button">Comment button</string>
+    <string name="like">like</string>
 
 </resources>

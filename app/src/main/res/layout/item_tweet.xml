@@ -49,19 +49,20 @@
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toBottomOf="@+id/tvScreenName"
         tools:text="Hello this is my sample tweet"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:autoLink="all" />
 
     <ImageView
         android:id="@+id/previewImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="121dp"
+        android:layout_height="100dp"
+        android:textColor="#ffffff"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBody"
         tools:srcCompat="@tools:sample/avatars"
-        tools:visibility="visible"
-        android:textColor="#ffffff"/>
+        tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnComment"
@@ -101,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:clickable="true"
-        android:contentDescription="@string/like_button"
+        android:contentDescription="@string/like"
         android:focusable="true"
         android:outlineProvider="none"
         app:backgroundTint="@color/cardview_dark_background"

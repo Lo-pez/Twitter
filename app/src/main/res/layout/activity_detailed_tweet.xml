@@ -49,7 +49,8 @@
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toBottomOf="@+id/tvScreenName"
         tools:text="Hello this is my sample tweet"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:autoLink="all" />
 
     <ImageView
         android:id="@+id/previewImage"

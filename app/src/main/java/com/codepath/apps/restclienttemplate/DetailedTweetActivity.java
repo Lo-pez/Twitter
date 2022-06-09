@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -68,7 +69,7 @@ public class DetailedTweetActivity extends AppCompatActivity {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
             tvDate.setText(tweet.createdAt);
-            Glide.with(DetailedTweetActivity.this).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Glide.with(DetailedTweetActivity.this).load(tweet.user.profileImageUrl).circleCrop().into(ivProfileImage);
             if (tweet.media != "none")
                 previewImage.setVisibility(View.VISIBLE);
             Glide.with(DetailedTweetActivity.this).load(tweet.media).into(previewImage);
