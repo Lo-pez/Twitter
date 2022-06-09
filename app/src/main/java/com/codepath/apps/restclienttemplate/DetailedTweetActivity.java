@@ -12,15 +12,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.apps.restclienttemplate.databinding.ActivityDetailedTweetBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DetailedTweetActivity extends AppCompatActivity {
+    private ActivityDetailedTweetBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detailed_tweet);
+        // activity_simple.xml -> ActivitySimpleBinding
+        binding = ActivityDetailedTweetBinding.inflate(getLayoutInflater());
 
+        // layout of activity is stored in a special property called root
+        View view = binding.getRoot();
+        setContentView(view);
     }
 
     // Define a viewholder
@@ -36,10 +43,10 @@ public class DetailedTweetActivity extends AppCompatActivity {
         TextView tvQuoteTweetCount;
         TextView tvLikesCount;
         TextView tvTwitterAndroid;
-        Button btnRetweet;
-        Button btnLike;
-        Button btnShare;
-        Button btnComment;
+        FloatingActionButton btnRetweet;
+        FloatingActionButton btnLike;
+        FloatingActionButton btnShare;
+        FloatingActionButton btnComment;
         Button btnTweet;
         ImageView previewImage;
 
@@ -47,22 +54,21 @@ public class DetailedTweetActivity extends AppCompatActivity {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
-            tvBody = itemView.findViewById(R.id.tvBody);
-            tvScreenName = itemView.findViewById(R.id.tvScreenName);
-            previewImage = itemView.findViewById(R.id.previewImage);
-            tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
-            btnTweet = itemView.findViewById(R.id.btnTweet);
-            btnComment = itemView.findViewById(R.id.btnComment);
-            btnLike = itemView.findViewById(R.id.btnLike);
-            btnRetweet = itemView.findViewById(R.id.btnRetweet);
-            btnShare = itemView.findViewById(R.id.btnShare);
-            tvTwitterAndroid = itemView.findViewById(R.id.tvTwitterAndroid);
-            tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
-            tvQuoteTweetCount = itemView.findViewById(R.id.tvQuoteTweetCount);
-            tvRetweetCount = itemView.findViewById(R.id.tvRetweetCount);
-            tvHour = itemView.findViewById(R.id.tvHour);
-            tvDate = itemView.findViewById(R.id.tvDate);
+            ivProfileImage = binding.ivProfileImage;
+            tvBody = binding.tvBody;
+            tvScreenName = binding.tvScreenName;
+            previewImage = binding.previewImage;
+            tvTimeStamp = binding.tvTimeStamp;
+            btnComment = binding.btnComment;
+            btnLike = binding.btnLike;
+            btnRetweet = binding.btnRetweet;
+            btnShare = binding.btnShare;
+            tvTwitterAndroid = binding.tvTwitterAndroid;
+            tvLikesCount = binding.tvLikesCount;
+            tvQuoteTweetCount = binding.tvQuoteTweetCount;
+            tvRetweetCount = binding.tvRetweetCount;
+            tvHour = binding.tvHour;
+            tvDate = binding.tvDate;
         }
 
         public void bind(Tweet tweet) {
