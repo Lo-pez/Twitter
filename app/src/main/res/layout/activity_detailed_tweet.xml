@@ -91,13 +91,13 @@
         android:outlineProvider="none"
         app:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnLike"
+        app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
         app:layout_constraintStart_toEndOf="@+id/btnComment"
         app:srcCompat="@android:drawable/arrow_up_float"
         android:textColor="#14171A"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnLike"
+        android:id="@+id/btnFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -122,7 +122,7 @@
         app:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnLike"
+        app:layout_constraintStart_toEndOf="@+id/btnFavorite"
         app:srcCompat="@android:drawable/ic_menu_share"
         android:textColor="#14171A"/>
 

@@ -60,7 +60,6 @@ public class DetailedTweetActivity extends AppCompatActivity {
             previewImage = binding.previewImage;
             tvTimeStamp = binding.tvTimeStamp;
             btnComment = binding.btnComment;
-            btnLike = binding.btnLike;
             btnRetweet = binding.btnRetweet;
             btnShare = binding.btnShare;
             tvTwitterAndroid = binding.tvTwitterAndroid;

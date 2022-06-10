@@ -69,68 +69,68 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:backgroundTint="#F5F8FA"
         android:clickable="true"
         android:contentDescription="@string/comment_button"
         android:focusable="true"
         android:outlineProvider="none"
+        android:textColor="#14171A"
         app:backgroundTint="#F5F8FA"
         app:layout_constraintEnd_toStartOf="@+id/btnRetweet"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@drawable/ic_vector_compose"
-        android:textColor="#14171A"
-        android:backgroundTint="#F5F8FA" />
+        app:srcCompat="@drawable/ic_vector_compose" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRetweet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:backgroundTint="#F5F8FA"
         android:clickable="true"
         android:contentDescription="@string/retweet_button"
         android:focusable="true"
         android:outlineProvider="none"
+        android:textColor="#14171A"
         app:backgroundTint="#F5F8FA"
-        app:layout_constraintEnd_toStartOf="@+id/btnLike"
+        app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
         app:layout_constraintStart_toEndOf="@+id/btnComment"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@drawable/ic_vector_retweet_stroke"
-        android:textColor="#14171A"
-        android:backgroundTint="#F5F8FA"/>
+        app:srcCompat="@drawable/ic_vector_retweet_stroke" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnLike"
+        android:id="@+id/btnFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:backgroundTint="#F5F8FA"
         android:clickable="true"
         android:contentDescription="@string/like"
         android:focusable="true"
         android:outlineProvider="none"
+        android:textColor="#14171A"
         app:backgroundTint="#F5F8FA"
-        app:layout_constraintEnd_toStartOf="@+id/btnShare"
+        app:layout_constraintEnd_toStartOf="@+id/tvFavoriteCount"
         app:layout_constraintStart_toEndOf="@+id/btnRetweet"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@drawable/ic_vector_heart_stroke"
-        android:textColor="#14171A"
-        android:backgroundTint="#F5F8FA"/>
+        app:srcCompat="@drawable/ic_vector_heart" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:backgroundTint="#F5F8FA"
         android:clickable="true"
         android:contentDescription="@string/share_button"
         android:focusable="true"
         android:outlineProvider="none"
+        android:textColor="#14171A"
         app:backgroundTint="#F5F8FA"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnLike"
+        app:layout_constraintStart_toEndOf="@+id/tvFavoriteCount"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@android:drawable/ic_menu_share"
-        android:textColor="#14171A"
-        android:backgroundTint="#F5F8FA"/>
+        app:srcCompat="@android:drawable/ic_menu_share" />
 
     <View
         android:id="@+id/view"
@@ -142,11 +142,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clCompose" />
 
+    <TextView
+        android:id="@+id/tvFavoriteCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnShare"
+        app:layout_constraintStart_toEndOf="@+id/btnFavorite"
+        app:layout_constraintTop_toBottomOf="@+id/previewImage"
+        tools:text="8213" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clCompose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnComment"
@@ -159,25 +170,25 @@
             android:hint="@string/what_s_happening"
             android:inputType="textMultiLine"
             android:minLines="5"
+            android:textColor="#14171A"
             android:visibility="visible"
             app:counterEnabled="true"
             app:counterMaxLength="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible"
-            android:textColor="#14171A"/>
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/btnTweet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tweet"
+            android:textColor="#14171A"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etCompose"
-            tools:visibility="visible"
-            android:textColor="#14171A"/>
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -74,16 +74,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         // Get data at position
         Tweet tweet = tweets.get(position);
 
-        holder.btnComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (holder.clCompose.getVisibility() == View.VISIBLE) {
-                    holder.clCompose.setVisibility(View.GONE);
-                }
-                else { holder.clCompose.setVisibility(View.VISIBLE); }
-            }
-        });
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,40 +84,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             }
         });
 
-        holder.btnTweet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String tweetContent = holder.etCompose.getText().toString();
-                if (tweetContent.isEmpty()) {
-                    Toast.makeText(context, "Sorry, your tweet cannot be empty.",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (tweetContent.length() > ComposeActivity.MAX_TWEET_LENGTH) {
-                    Toast.makeText(context, "Sorry, your tweet is too long.",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                // Make an API call to Twitter to publish the tweet
-                client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Headers headers, JSON json) {
-                        Log.i(TAG, "onSuccess published tweet");
-                        try {
-                            Tweet tweet = Tweet.fromJson(json.jsonObject);
-                            Log.i(TAG, "Published tweet says:" + tweet.body);
-                            holder.clCompose.setVisibility(View.GONE);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                        Log.e(TAG, "onFailure to publish tweet", throwable);
-                    }
-                });
-                // TODO set up character counting
-            }
-        });
         // Bind the tweet with the viewholder
         holder.bind(tweet);
     }
@@ -149,6 +105,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView etCompose;
         ImageView previewImage;
         FloatingActionButton btnComment;
+        Button btnFavorite;
+        TextView tvFavoriteCount;
 
 
         public ViewHolder (@NonNull View itemView) {
@@ -162,6 +120,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             etCompose = itemView.findViewById(R.id.etCompose);
             clCompose = itemView.findViewById(R.id.clCompose);
             btnTweet = itemView.findViewById(R.id.btnTweet);
+            btnFavorite = itemView.findViewById(R.id.btnFavorite);
+            tvFavoriteCount = itemView.findViewById(R.id.tvFavoriteCount);
         }
 
         public void bind(Tweet tweet) {
@@ -170,9 +130,70 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvTimeStamp.setText(tweet.relativeTimeAgo);
             etCompose.setText("@" + tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageUrl).circleCrop().into(ivProfileImage);
-            if (tweet.media != "none")
+            if (tweet.media != "none") {
                 previewImage.setVisibility(View.VISIBLE);
-                Glide.with(context).load(tweet.media).into(previewImage);
+
+            }
+            Glide.with(context).load(tweet.media).into(previewImage);
+            btnFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // if not already favorited
+                        // tell twitter i want to favorite this
+                        // change drawable (Or tint)
+                        // increment text inside tvFavoriteCount
+
+                    // else if already favorited
+                        // tell twitter i want to unfavorite this
+                        // change the drawable back (or change tint again)
+                }
+            });
+
+            btnComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (clCompose.getVisibility() == View.VISIBLE) {
+                        clCompose.setVisibility(View.GONE);
+                    }
+                    else { clCompose.setVisibility(View.VISIBLE); }
+                }
+            });
+
+            btnTweet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String tweetContent = etCompose.getText().toString();
+                    if (tweetContent.isEmpty()) {
+                        Toast.makeText(context, "Sorry, your tweet cannot be empty.",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    if (tweetContent.length() > ComposeActivity.MAX_TWEET_LENGTH) {
+                        Toast.makeText(context, "Sorry, your tweet is too long.",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    // Make an API call to Twitter to publish the tweet
+                    client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Headers headers, JSON json) {
+                            Log.i(TAG, "onSuccess published tweet");
+                            try {
+                                Tweet tweet = Tweet.fromJson(json.jsonObject);
+                                Log.i(TAG, "Published tweet says:" + tweet.body);
+                                clCompose.setVisibility(View.GONE);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                            Log.e(TAG, "onFailure to publish tweet", throwable);
+                        }
+                    });
+                    // TODO set up character counting
+                }
+            });
+
         }
 
         @Override
