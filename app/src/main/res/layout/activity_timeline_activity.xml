@@ -6,44 +6,132 @@
     android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#141d26">
+    android:background="#F5F8FA">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".TimelineActivity">
+        tools:context=".TimelineActivity" android:layout_width="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTweets"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:textColor="#14171A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#ffffff"/>
+            app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
         <Button
             android:id="@+id/btLogOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/log_out"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
             android:onClick="onLogoutButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="UsingOnClickInXml"
-            android:textColor="#ffffff"/>
+            android:text="@string/log_out"
+            android:textColor="#14171A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="UsingOnClickInXml" />
 
         <ProgressBar
             android:id="@+id/pbLoading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#14171A"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/rvTweets"
             app:layout_constraintEnd_toEndOf="@+id/rvTweets"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/rvTweets"
-            android:textColor="#ffffff"/>
+            app:layout_constraintTop_toTopOf="@+id/rvTweets" />
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/rvTweets"
+            app:layout_constraintEnd_toStartOf="@+id/twitter_logo"
+            app:layout_constraintStart_toStartOf="@+id/toolbar2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            android:backgroundTint="#F5F8FA"
+            android:src="@drawable/ic_vector_default_profile"
+            android:outlineProvider="none"
+            android:focusable="true"
+            app:backgroundTint="#F5F8FA"
+            />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/twitter_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/rvTweets"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+            app:layout_constraintStart_toStartOf="@+id/toolbar2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            android:backgroundTint="#F5F8FA"
+            android:src="@drawable/ic_vector_twitter"
+            android:outlineProvider="none"
+            android:focusable="true"
+            app:backgroundTint="#F5F8FA"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/menu_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/rvTweets"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+            app:layout_constraintStart_toEndOf="@+id/twitter_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            android:backgroundTint="#F5F8FA"
+            android:src="@drawable/ic_vector_blue_menu"
+            android:focusable="true"
+            android:outlineProvider="none"
+            app:backgroundTint="#F5F8FA"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnOpenTweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_twit_compose"
+            app:maxImageSize="115dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

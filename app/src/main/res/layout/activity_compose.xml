@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ComposeActivity"
-    android:background="#141d26">
+    android:background="#F5F8FA">
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -19,10 +19,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:passwordToggleEnabled="false"
-        android:textColor="#ffffff">
+        android:textColor="#14171A">
 
         <EditText
-            android:id="@+id/etCompose"
+            android:id="@+id/etComposeScr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -30,15 +30,16 @@
             android:layout_marginEnd="5dp"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="@string/what_s_happening"
+            android:hint="@string/app_name"
             android:inputType="textMultiLine"
             android:minLines="5"
+            android:textColor="#14171A"
             app:counterEnabled="true"
             app:counterMaxLength="10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#ffffff"/>
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,5 +50,5 @@
         android:text="@string/tweet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        android:textColor="#ffffff"/>
+        android:textColor="#14171A"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

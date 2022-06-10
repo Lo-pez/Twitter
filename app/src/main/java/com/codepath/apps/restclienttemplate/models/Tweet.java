@@ -2,6 +2,8 @@ package com.codepath.apps.restclienttemplate.models;
 
 import android.util.Log;
 
+import androidx.room.Entity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Parcel
+@Entity
 public class Tweet {
 
     private static final String TAG = "Tweet";
@@ -22,7 +25,7 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String timeStamp;
-    public String postId;
+    public String id;
     public String media;
     public String relativeTimeAgo;
 //    public JSONObject entities;
@@ -40,7 +43,7 @@ public class Tweet {
         }
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-//        tweet.timeStamp = tweet.getRel
+        tweet.id = jsonObject.getString("id_str");
         if (!jsonObject.getJSONObject("entities").has("media"))
         {
             Log.d("Tweet", "No pictures");

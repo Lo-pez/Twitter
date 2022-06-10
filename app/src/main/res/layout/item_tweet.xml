@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="#141d26">
+    android:background="#F5F8FA">
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars"
         android:contentDescription="@string/user_image"
-        android:textColor="#ffffff"/>
+        android:textColor="#14171A"/>
 
     <TextView
         android:id="@+id/tvScreenName"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="rpandey923"
-        android:textColor="#ffffff"/>
+        android:textColor="#14171A"/>
 
     <TextView
         android:id="@+id/tvTimeStamp"
@@ -37,7 +37,7 @@
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#ffffff"/>
+        android:textColor="#14171A"/>
 
     <TextView
         android:id="@+id/tvBody"
@@ -49,14 +49,14 @@
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toBottomOf="@+id/tvScreenName"
         tools:text="Hello this is my sample tweet"
-        android:textColor="#ffffff"
+        android:textColor="#14171A"
         android:autoLink="all" />
 
     <ImageView
         android:id="@+id/previewImage"
-        android:layout_width="121dp"
-        android:layout_height="100dp"
-        android:textColor="#ffffff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#14171A"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,12 +73,13 @@
         android:contentDescription="@string/comment_button"
         android:focusable="true"
         android:outlineProvider="none"
-        app:backgroundTint="@color/cardview_dark_background"
+        app:backgroundTint="#F5F8FA"
         app:layout_constraintEnd_toStartOf="@+id/btnRetweet"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@android:drawable/sym_action_chat"
-        android:textColor="#ffffff"/>
+        app:srcCompat="@drawable/ic_vector_compose"
+        android:textColor="#14171A"
+        android:backgroundTint="#F5F8FA" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnRetweet"
@@ -89,12 +90,13 @@
         android:contentDescription="@string/retweet_button"
         android:focusable="true"
         android:outlineProvider="none"
-        app:backgroundTint="@color/cardview_dark_background"
+        app:backgroundTint="#F5F8FA"
         app:layout_constraintEnd_toStartOf="@+id/btnLike"
         app:layout_constraintStart_toEndOf="@+id/btnComment"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@android:drawable/arrow_up_float"
-        android:textColor="#ffffff"/>
+        app:srcCompat="@drawable/ic_vector_retweet_stroke"
+        android:textColor="#14171A"
+        android:backgroundTint="#F5F8FA"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnLike"
@@ -105,12 +107,13 @@
         android:contentDescription="@string/like"
         android:focusable="true"
         android:outlineProvider="none"
-        app:backgroundTint="@color/cardview_dark_background"
+        app:backgroundTint="#F5F8FA"
         app:layout_constraintEnd_toStartOf="@+id/btnShare"
         app:layout_constraintStart_toEndOf="@+id/btnRetweet"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@android:drawable/gallery_thumb"
-        android:textColor="#ffffff"/>
+        app:srcCompat="@drawable/ic_vector_heart_stroke"
+        android:textColor="#14171A"
+        android:backgroundTint="#F5F8FA"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnShare"
@@ -121,12 +124,23 @@
         android:contentDescription="@string/share_button"
         android:focusable="true"
         android:outlineProvider="none"
-        app:backgroundTint="@color/cardview_dark_background"
+        app:backgroundTint="#F5F8FA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnLike"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
         app:srcCompat="@android:drawable/ic_menu_share"
-        android:textColor="#ffffff"/>
+        android:textColor="#14171A"
+        android:backgroundTint="#F5F8FA"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#E2E2E4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clCompose" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clCompose"
@@ -152,7 +166,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible"
-            android:textColor="#ffffff"/>
+            android:textColor="#14171A"/>
 
         <Button
             android:id="@+id/btnTweet"
@@ -163,7 +177,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etCompose"
             tools:visibility="visible"
-            android:textColor="#ffffff"/>
+            android:textColor="#14171A"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

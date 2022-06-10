@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Parcel
+@androidx.room.Entity
 public class Entity {
 
     public String media;

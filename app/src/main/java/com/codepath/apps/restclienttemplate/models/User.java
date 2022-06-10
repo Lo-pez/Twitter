@@ -1,10 +1,13 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import androidx.room.Entity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
 @Parcel
+@Entity
 public class User {
 
     public String name;

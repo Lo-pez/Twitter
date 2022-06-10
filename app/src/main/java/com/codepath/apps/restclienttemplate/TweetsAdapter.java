@@ -1,7 +1,5 @@
 package com.codepath.apps.restclienttemplate;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -9,15 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -38,6 +33,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     Context context;
     List<Tweet> tweets;
     TwitterClient client;
+    ActivityTimelineActivityBinding binding;
     public static final String TAG = "TweetsAdapter";
 
 
