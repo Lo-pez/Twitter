@@ -93,7 +93,7 @@
         android:outlineProvider="none"
         android:textColor="#14171A"
         app:backgroundTint="#F5F8FA"
-        app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
+        app:layout_constraintEnd_toStartOf="@+id/tvRtCount"
         app:layout_constraintStart_toEndOf="@+id/btnComment"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
         app:srcCompat="@drawable/ic_vector_retweet_stroke" />
@@ -111,9 +111,9 @@
         android:textColor="#14171A"
         app:backgroundTint="#F5F8FA"
         app:layout_constraintEnd_toStartOf="@+id/tvFavoriteCount"
-        app:layout_constraintStart_toEndOf="@+id/btnRetweet"
+        app:layout_constraintStart_toEndOf="@+id/tvRtCount"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
-        app:srcCompat="@drawable/ic_vector_heart" />
+        app:srcCompat="@drawable/ic_vector_heart_stroke" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnShare"
@@ -149,6 +149,16 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/btnShare"
         app:layout_constraintStart_toEndOf="@+id/btnFavorite"
+        app:layout_constraintTop_toBottomOf="@+id/previewImage"
+        tools:text="8213" />
+
+    <TextView
+        android:id="@+id/tvRtCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
+        app:layout_constraintStart_toEndOf="@+id/btnRetweet"
         app:layout_constraintTop_toBottomOf="@+id/previewImage"
         tools:text="8213" />
 

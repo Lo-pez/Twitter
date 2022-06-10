@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.codepath.apps.restclienttemplate.databinding.ActivityComposeBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
 import org.parceler.Parcels;
@@ -24,8 +23,6 @@ public class ComposeActivity extends AppCompatActivity {
 
     public static final String TAG = "ComposeActivity";
     public static final int MAX_TWEET_LENGTH = 140;
-
-    private ActivityComposeBinding binding;
 
     EditText etComposeScr;
     Button btnTweet;
@@ -38,7 +35,7 @@ public class ComposeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // activity_simple.xml -> ActivitySimpleBinding
-        binding = ActivityComposeBinding.inflate(getLayoutInflater());
+        com.codepath.apps.restclienttemplate.databinding.ActivityComposeBinding binding = ActivityComposeBinding.inflate(getLayoutInflater());
 
         // layout of activity is stored in a special property called root
         View view = binding.getRoot();
@@ -69,6 +66,7 @@ public class ComposeActivity extends AppCompatActivity {
                         Log.i(TAG, "onSuccess published tweet");
                         try {
                             Tweet tweet = Tweet.fromJson(json.jsonObject);
+                            assert tweet != null;
                             Log.i(TAG, "Published tweet says:" + tweet.body);
                             Intent intent = new Intent();
                             intent.putExtra("tweet", Parcels.wrap(tweet));
@@ -82,10 +80,9 @@ public class ComposeActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                        Log.e(TAG, "onFailure to publish tweet", throwable);
+                        Log.e(TAG, "onFailure to publish tweet" + throwable);
                     }
                 });
-                // TODO set up character counting
             }
         });
     }

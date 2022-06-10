@@ -12,9 +12,9 @@ import org.parceler.Parcel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 @Parcel
 @Entity
@@ -28,22 +28,34 @@ public class Tweet {
     public String id;
     public String media;
     public String relativeTimeAgo;
-//    public JSONObject entities;
+    public Boolean isFavorited;
+    public Boolean isRetweeted;
+    public int favoriteCount;
+    public int retweetCount;
 
-    // Empty constructor for parcelable lib
+    // Empty constructor required by parcel
     public Tweet(){}
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
+        if (jsonObject.has("retweeted_stats")) {
+            return null;
+        }
+
         Tweet tweet = new Tweet();
         if(jsonObject.has("full_text")) {
             tweet.body = jsonObject.getString("full_text");
-//            tweet.entities = jsonObject.getJSONObject("entities");
         } else {
             tweet.body = jsonObject.getString("text");
         }
+
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
         tweet.id = jsonObject.getString("id_str");
+        tweet.isFavorited = jsonObject.getBoolean("favorited");
+        tweet.isRetweeted = jsonObject.getBoolean("retweeted");
+        tweet.favoriteCount = jsonObject.getInt("favorite_count");
+        tweet.retweetCount = jsonObject.getInt("retweet_count");
+
         if (!jsonObject.getJSONObject("entities").has("media"))
         {
             Log.d("Tweet", "No pictures");
@@ -54,6 +66,7 @@ public class Tweet {
             Log.d("Tweet", jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url"));
             tweet.media = jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url");
         }
+
         Log.i("TAG", tweet.media);
         tweet.relativeTimeAgo = tweet.getRelativeTimeAgo(tweet.createdAt);
         return tweet;
@@ -62,7 +75,8 @@ public class Tweet {
     public static List<Tweet> fromJsonArray(JSONArray jsonArray) throws JSONException {
         List<Tweet> tweets = new ArrayList<Tweet>();
         for (int i = 0; i < jsonArray.length(); i++) {
-            tweets.add(fromJson(jsonArray.getJSONObject(i)));
+            Tweet newTweet = fromJson(jsonArray.getJSONObject(i));
+            if (newTweet != null) tweets.add(newTweet);
         }
         return tweets;
     }
@@ -78,7 +92,7 @@ public class Tweet {
         sf.setLenient(true);
 
         try {
-            long time = sf.parse(rawJsonDate).getTime();
+            long time = Objects.requireNonNull(sf.parse(rawJsonDate)).getTime();
             long now = System.currentTimeMillis();
 
             final long diff = now - time;

@@ -6,16 +6,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Parcel
 @androidx.room.Entity
 public class Entity {
 
     public String media;
 
-    // Empty constructor for parcelable lib
+    // Empty constructor required by parcel
     public Entity(){}
 
     public static Entity fromJson(JSONObject jsonObject) throws JSONException {
